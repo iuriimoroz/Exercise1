@@ -44,7 +44,7 @@ namespace Exercise1
             string emailAddress;
             Console.WriteLine("Please input an email address and press [Enter] button on your keyboard:");
             emailAddress = Console.ReadLine();
-            if(IsValidEmail(emailAddress))
+            if (IsValidEmail(emailAddress))
             {
                 Console.WriteLine("Provided above email is a valid email address.");
             }
