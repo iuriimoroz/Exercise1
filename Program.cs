@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 
 namespace Exercise1
 {
@@ -50,7 +52,31 @@ namespace Exercise1
             {
                 Console.WriteLine("Unfortunately provided email is not a valid email address.");
             }
-            
+
+
+            //Prompting a user to input numbers for calculation their sum
+            ArrayList numbersList = new ArrayList(); //Declaration of an Array List where numbers will be stored
+            string input;
+
+            do
+            {
+                Console.WriteLine("Print a number and press [Enter] button. If you want to stop - print \"stop\" word:");
+                input = Console.ReadLine();
+                if (input.All(char.IsDigit))//Checking if user provided a number
+                {
+                    numbersList.Add(Convert.ToInt32(input));
+                }
+                else if (input != "stop")//When user provided a symblol - he will be prompted to try again
+                {
+                    Console.WriteLine("Please provide an integer number, not a symbol. Try again.");
+                }
+
+            } while (input != "stop");//At this point the application stops prompting user to input numbers and goes to sum calculation code
+
+            int sum = numbersList.OfType<int>().ToArray().Sum();
+            Console.WriteLine($"The sum of numbers provided above is {sum}.");
+
+            Console.WriteLine("Press any key to close the screen...");
             Console.ReadKey();
         }
     }
