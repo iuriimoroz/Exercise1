@@ -2,8 +2,21 @@ using System;
 
 namespace Exercise1
 {
-    class Program
+    static class Program
     {
+        //Method which checks the validity of email string provided
+        static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         static void Main()
         {
             //Current date calculation and printing
@@ -24,6 +37,19 @@ namespace Exercise1
 
             } while (!isLeapYear || leapYearSearch.DayOfWeek.ToString() != "Tuesday");
             Console.WriteLine($"The next leap year that starts with a Tuesday is {leapYearSearch.Year};");
+
+            //Checking if provided by user email address is a valid email
+            string emailAddress;
+            Console.WriteLine("Please input an email address and press [Enter] button on your keyboard:");
+            emailAddress = Console.ReadLine();
+            if(IsValidEmail(emailAddress))
+            {
+                Console.WriteLine("Provided above email is a valid email address.");
+            }
+            else
+            {
+                Console.WriteLine("Unfortunately provided email is not a valid email address.");
+            }
             
             Console.ReadKey();
         }
