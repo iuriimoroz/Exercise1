@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Exercise1
 {
@@ -14,7 +12,7 @@ namespace Exercise1
             string emailAddress;
             Console.WriteLine("Please input an email address and press [Enter] button on your keyboard:");
             emailAddress = Console.ReadLine();
-            if (Regex.IsMatch(emailAddress, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+            if (EmailStringValidator.IsValidEmail(emailAddress)) // "EmailStringValidator" is a separate class which validates email strings
             {
                 Console.WriteLine("Provided above email is a valid email address.");
             }
@@ -26,14 +24,14 @@ namespace Exercise1
         // Method which calculates and prints to console current date, number of days elapsed since start of the year and the next leap year that starts with a Tuesday
         static void DaysAndYears()
         {
-            // Current date calculation and printing
+            // Current date calculation and printing  
             var date = DateTime.Now;
             var newYear = new DateTime(date.Year, 1, 1, 0, 0, 0); // Current year starting date and time declaration
             TimeSpan timeElapsed = date.Subtract(newYear); // Get the TimeSpan of the difference between now and start of the year
             double daysAgo = timeElapsed.TotalDays;
             Console.WriteLine($"The current date in the \"yyyy/mm/dd\" format is: {date.ToString("yyyy/MM/dd")};");
 
-            // Number of days elapsed since start of the year calculation and printing
+            // Number of days elapsed since start of the year calculation and printing (calculates full days elapsed, when less than one day elapsed it returns 0
             Console.WriteLine($"Sinse the start of the current year elapsed {daysAgo.ToString("0")} full days;");
 
             // Calculation and printing the next leap year that starts with a Tuesday
@@ -53,7 +51,7 @@ namespace Exercise1
         static void SumOfSequenceOfNumbers()
         {
             // Prompting a user to input numbers for calculation their sum
-            var numbersList = new List<int>(); // Declaration of an integer List where numbers will be stored
+            var numbersList = new List<double>(); // Declaration of a double List where numbers will be stored
             string input;
 
             do
@@ -79,7 +77,7 @@ namespace Exercise1
 
             } while (input != "stop"); // At this point the application stops prompting user to input numbers and goes to sum calculation code
 
-            int sum = numbersList.Sum();
+            double sum = numbersList.Sum(); 
             Console.WriteLine($"The sum of numbers provided above is {sum}.");
         }
         static void Main()
